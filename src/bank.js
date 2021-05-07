@@ -10,11 +10,12 @@ class Bank {
   }
 
   deposit(amount){
-    amount = this.checkInputValid(amount);
-    if(amount.isTwoDecimalPlaces === false) return amount;
+    let value = this.checkInputValid(amount);
+    if(value != amount) return value;
+    if(value.isTwoDecimalPlaces === false) return value;
 
-    this.balance = this.balance + amount;
-    this.statement.transactions.push({credit: amount, balance: this.balance, debit: 0, date: this.formatDate()});
+    this.balance = this.balance + value;
+    this.statement.transactions.push({credit: value, balance: this.balance, debit: 0, date: this.formatDate()});
   }
 
   isTwoDecimalPlaces(n){
@@ -22,24 +23,25 @@ class Bank {
   }
 
   withdraw(amount){
-    amount = this.checkInputValid(amount);
-    if(amount.isTwoDecimalPlaces === false) return amount;
-    if(amount > this.balance) return "Insufficient funds";
+    let number = this.checkInputValid(amount);
+    if(number != amount) return number;
+    if(number.isTwoDecimalPlaces === false) return number;
+    if(number > this.balance) return "Insufficient funds";
 
-    this.balance = this.balance - amount;
-    this.statement.transactions.push({credit: 0, balance: this.balance, debit: amount, date: this.formatDate()});
+    this.balance = this.balance - number;
+    this.statement.transactions.push({credit: 0, balance: this.balance, debit: number, date: this.formatDate()});
   }
 
   checkInputValid(amount){
-    amount = parseFloat(amount);
-    if (amount < 0) {
+    let input = parseFloat(amount);
+    if (input < 0) {
       return 'Please enter a number > 0';
     }
-    else if (this.isTwoDecimalPlaces(amount) === false){
+    else if (this.isTwoDecimalPlaces(input) === false){
       return 'Please enter a number with no more than 2 decimal places';
     }
     else {
-      return amount;
+      return input;
     }
   }
 
