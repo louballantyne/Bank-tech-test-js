@@ -15,7 +15,7 @@ class Statement {
   printStatement(){
     let printedStatement = 'date || credit || debit || balance';
     let that = this;
-    this.transactions.forEach(function (transaction){
+    this.transactions.reverse().forEach(function (transaction){
       printedStatement += `\n${transaction.date} ||`;
       printedStatement += that.printTransaction(transaction.credit);
       printedStatement += that.printTransaction(transaction.debit);
