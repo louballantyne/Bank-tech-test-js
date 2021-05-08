@@ -79,5 +79,4 @@ describe("Bank", function() {
       expect(statement.printStatement).toHaveBeenCalled();
     });
   });
-
 });
